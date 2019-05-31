@@ -55,13 +55,9 @@ public class Board {
 
     public boolean checkHouseIsEmpty(int player, int house) {
         if (player == 1) {
-            if (p1_state.get(house).getSeeds() == 0) {
-                return true;
-            }
+            return (p1_state.get(house).getSeeds() == 0);
         } else if (player == 2) {
-            if (p2_state.get(house).getSeeds() == 0) {
-                return true;
-            }
+            return (p2_state.get(house).getSeeds() == 0);
         }
         return false;
     }
@@ -79,10 +75,7 @@ public class Board {
             seeds = seeds + p_state.get(i).getSeeds();
         }
 
-        if (seeds == 0) {
-            return true;
-        }
-        return false;
+        return (seeds == 0);
     }
 
     public boolean playerMove(int player, int house) {
@@ -100,9 +93,6 @@ public class Board {
 
         int counter = house;
 
-        if (player == 1 && house == 2) {
-            counter = house;
-        }
         for (int i=0; i<seeds; i++,counter++) {
             if (counter == houses+1) {
                 if (p_state.equals(p1_state)) {
@@ -131,7 +121,7 @@ public class Board {
         return false;
     }
 
-    public void playerCapture(int player, int house) {
+    private void playerCapture(int player, int house) {
         int house_to_cap = houses - house - 1;
         int seeds;
         List<GameNode> p_state = null;

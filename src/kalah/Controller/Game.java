@@ -2,11 +2,12 @@ package kalah.Controller;
 
 import com.qualitascorpus.testsupport.IO;
 import kalah.Model.Board;
+import kalah.View.AbstractPrint;
 import kalah.View.KalahPrint;
 
 public class Game {
     private Board board = new Board();
-    private KalahPrint print = new KalahPrint();
+    private AbstractPrint print = new KalahPrint();
     private boolean game_over = false;
     private int player_turn = 1;
 
@@ -23,7 +24,7 @@ public class Game {
             }
 
             this.printGame();
-            String input = print.getPlayerMove(player_turn);
+            String input = AbstractPrint.getPlayerMove(player_turn);
 
             if (input.equals("q")) {
                 gameOver();
@@ -36,16 +37,13 @@ public class Game {
                 continue;
             }
 
-            if (board.playerMove(player_turn, move)){
-                continue;
-            } else {
+            if (!board.playerMove(player_turn, move)){
                 switchPlayers();
             }
-
         }
     }
 
-    public void switchPlayers() {
+    private void switchPlayers() {
         if (player_turn == 1) {
             player_turn = 2;
         } else if (player_turn == 2) {
@@ -53,38 +51,38 @@ public class Game {
         }
     }
 
-    public void gameOver() {
+    private void gameOver() {
         game_over = true;
-        print.gameOver();
+        AbstractPrint.gameOver();
         this.printGame();
     }
 
-    public void gameOverWithScore() {
+    private void gameOverWithScore() {
         game_over = true;
         this.printGame();
-        print.gameOver();
+        AbstractPrint.gameOver();
         this.printGame();
         int[] scores = board.score();
-        print.score(scores[0], scores[1]);
+        AbstractPrint.score(scores[0], scores[1]);
         if (scores[0] > scores[1]) {
-            print.playerWin(1);
+            AbstractPrint.playerWin(1);
         } else if (scores[0] < scores[1]) {
-            print.playerWin(2);
-        } else if (scores[0] == scores[1]) {
-            print.playerTie();
+            AbstractPrint.playerWin(2);
+        } else {
+            AbstractPrint.playerTie();
         }
     }
 
-    public boolean checkValidMove(int player, int move) {
+    private boolean checkValidMove(int player, int move) {
         int house = move - 1;
         if (board.checkHouseIsEmpty(player, house)) {
-            print.houseEmpty();
+            AbstractPrint.houseEmpty();
             return false;
         }
         return true;
     }
 
-    public void printGame() {
+    private void printGame() {
         print.game(board);
     }
 }
