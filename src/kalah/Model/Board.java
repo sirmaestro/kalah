@@ -1,8 +1,5 @@
 package kalah.Model;
 
-import kalah.View.AbstractPrint;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class Board extends AbstractBoard {
@@ -11,19 +8,19 @@ public class Board extends AbstractBoard {
         int seeds = 0;
         List<GameNode> p_state = null;
         if (player == 1) {
-            seeds = p1_state.get(house-1).getSeeds();
-            ((House)p1_state.get(house-1)).removeAllSeeds();
+            seeds = p1_state.get(house - 1).getSeeds();
+            ((House) p1_state.get(house - 1)).removeAllSeeds();
             p_state = p1_state;
         } else if (player == 2) {
-            seeds = p2_state.get(house-1).getSeeds();
-            ((House)p2_state.get(house-1)).removeAllSeeds();
+            seeds = p2_state.get(house - 1).getSeeds();
+            ((House) p2_state.get(house - 1)).removeAllSeeds();
             p_state = p2_state;
         }
 
         int counter = house;
 
-        for (int i=0; i<seeds; i++,counter++) {
-            if (counter == houses+1) {
+        for (int i = 0; i < seeds; i++, counter++) {
+            if (counter == houses + 1) {
                 if (p_state.equals(p1_state)) {
                     p_state = p2_state;
                     counter = 0;
@@ -41,11 +38,11 @@ public class Board extends AbstractBoard {
         }
 
 
-        if (p_state.get(counter-1) instanceof Store) {
+        if (p_state.get(counter - 1) instanceof Store) {
             return true;
-        } else if (p_state.get(counter-1).getSeeds() == 1 &&
+        } else if (p_state.get(counter - 1).getSeeds() == 1 &&
                 ((p_state.equals(p1_state) && player == 1) || (p_state.equals(p2_state) && player == 2))) {
-            playerCapture(player,counter-1);
+            playerCapture(player, counter - 1);
         }
         return false;
     }
@@ -64,15 +61,13 @@ public class Board extends AbstractBoard {
             other_p_state = p1_state;
         }
 
-        if (other_p_state.get(house_to_cap).getSeeds() == 0){
+        if (other_p_state.get(house_to_cap).getSeeds() == 0) {
             return;
         }
         seeds = other_p_state.get(house_to_cap).getSeeds() + p_state.get(house).getSeeds();
-        ((House)other_p_state.get(house_to_cap)).removeAllSeeds();
-        ((House)p_state.get(house)).removeAllSeeds();
-        ((Store)p_state.get(houses)).addSeeds(seeds);
+        ((House) other_p_state.get(house_to_cap)).removeAllSeeds();
+        ((House) p_state.get(house)).removeAllSeeds();
+        ((Store) p_state.get(houses)).addSeeds(seeds);
     }
-
-
 
 }

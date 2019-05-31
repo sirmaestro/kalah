@@ -38,7 +38,7 @@ public class Game {
                 continue;
             }
 
-            if (!board.playerMove(player_turn, move)){
+            if (!board.playerMove(player_turn, move)) {
                 switchPlayers();
             }
         }

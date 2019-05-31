@@ -7,7 +7,9 @@ public class GameNode {
         this.seeds = seeds;
     }
 
-    public int getSeeds() { return this.seeds; }
+    public int getSeeds() {
+        return this.seeds;
+    }
 
     public void incrementSeed() {
         this.seeds += 1;

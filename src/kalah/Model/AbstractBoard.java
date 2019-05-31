@@ -13,7 +13,7 @@ public abstract class AbstractBoard {
 
     public void setup(int seeds, int houses) {
         this.houses = houses;
-        for (int i=0; i<houses; i++) {
+        for (int i = 0; i < houses; i++) {
             House p1_house = new House();
             p1_house.setup(seeds);
             House p2_house = new House();
@@ -73,7 +73,7 @@ public abstract class AbstractBoard {
             p_state = p2_state;
         }
 
-        for (int i=0; i<houses; i++) {
+        for (int i = 0; i < houses; i++) {
             seeds = seeds + p_state.get(i).getSeeds();
         }
 
@@ -83,7 +83,7 @@ public abstract class AbstractBoard {
     public int[] score() {
         int p1_score = 0, p2_score = 0;
 
-        for (int i=0; i<houses+1; i++) {
+        for (int i = 0; i < houses + 1; i++) {
             p1_score += p1_state.get(i).getSeeds();
             p2_score += p2_state.get(i).getSeeds();
         }

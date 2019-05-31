@@ -2,16 +2,9 @@ package kalah.View;
 
 import com.qualitascorpus.testsupport.IO;
 import kalah.Model.AbstractBoard;
-import kalah.Model.Board;
 
 public abstract class AbstractPrint {
     static IO io;
-
-    public void setup(IO io) {
-        AbstractPrint.io = io;
-    }
-
-    public abstract void game(AbstractBoard board);
 
     public static void playerWin(int player) {
         io.println(String.format("Player %d wins!", player));
@@ -41,4 +34,10 @@ public abstract class AbstractPrint {
         io.println(line_1);
         io.println(line_2);
     }
+
+    public void setup(IO io) {
+        AbstractPrint.io = io;
+    }
+
+    public abstract void game(AbstractBoard board);
 }
