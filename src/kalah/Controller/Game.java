@@ -1,12 +1,13 @@
 package kalah.Controller;
 
 import com.qualitascorpus.testsupport.IO;
+import kalah.Model.AbstractBoard;
 import kalah.Model.Board;
 import kalah.View.AbstractPrint;
 import kalah.View.KalahPrint;
 
 public class Game {
-    private Board board = new Board();
+    private AbstractBoard board = new Board();
     private AbstractPrint print = new KalahPrint();
     private boolean game_over = false;
     private int player_turn = 1;

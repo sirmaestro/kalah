@@ -1,10 +1,11 @@
 package kalah.View;
 
+import kalah.Model.AbstractBoard;
 import kalah.Model.Board;
 
 public class KalahPrint extends AbstractPrint {
 
-    public void game(Board board) {
+    public void game(AbstractBoard board) {
         String braces = "+----+";
         String mid_brace = "|    |";
         String p2_print = "| P2 |";
