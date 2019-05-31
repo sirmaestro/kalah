@@ -22,7 +22,7 @@ public class Game {
                 break;
             }
 
-            print.gameVertical(board);
+            print.game(board);
             String input = print.getPlayerMove(player_turn);
 
             if (input.equals("q")) {
@@ -56,14 +56,14 @@ public class Game {
     public void gameOver() {
         game_over = true;
         print.gameOver();
-        print.gameVertical(board);
+        print.game(board);
     }
 
     public void gameOverWithScore() {
         game_over = true;
-        print.gameVertical(board);
+        print.game(board);
         print.gameOver();
-        print.gameVertical(board);
+        print.game(board);
         int[] scores = board.score();
         print.score(scores[0], scores[1]);
         if (scores[0] > scores[1]) {
